@@ -1,0 +1,48 @@
+{
+    "startStep": "flow-example-has-income-step",
+    "steps": [
+        {
+            "key": "flow-example-has-income-step",
+            "type": {
+                "name": "form",
+                "properties": {
+                    "definition": "flow-example-has-income"
+                }
+            },
+            "nextSteps": [
+                {
+                    "step": "flow-example-income-step",
+                    "condition": "${step.submissionData.hasIncome == 'YES'}"
+                },
+                {
+                    "step": "flow-example-end-step",
+                    "condition": "${step.submissionData.hasIncome == 'NO'}"
+                }
+            ]
+        },
+        {
+            "key": "flow-example-income-step",
+            "nextStep": "flow-example-end-step",
+            "type": {
+                "name": "form",
+                "properties": {
+                    "definition": "flow-example-income"
+                }
+            }
+        },
+        {
+            "key": "flow-example-end-step",
+            "onBack": [],
+            "onOpen": [],
+                "onComplete": ["${valtimoFormFlow.completeTask(additionalProperties, step.submissionData, {'doc:/gegevensBeoordeling':'/gegevensBeoordeling', 'pv:submit':'/submit'})}"
+                ],
+
+            "type": {
+                "name": "form",
+                "properties": {
+                    "definition": "flow-example-end"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+[
+    {
+        "formName": "investigation1.start-form",
+        "formLinkElementId": "StartEvent",
+        "formAssociationType": "start-event"
+    },
+    {
+        "formFlowName": "investigation1:latest",
+        "formLinkElementId": "flow",
+        "formAssociationType": "user-task"
+    }
+]

@@ -1,0 +1,138 @@
+{
+    "display": "form",
+    "components": [
+        {
+            "label": "BSN",
+            "applyMaskOn": "change",
+            "tableView": true,
+            "key": "gegevensVanuitAanvraag.aanvraagOntologieData.persoonsgegevens.persoon.burgerservicenummer",
+            "inputMask": "999999999",
+            "validate": {
+                "required": true,
+                "custom": "valid = [...input].reverse().reduce( (accumulator, currentValue, currentIndex) => Number(accumulator) + (currentValue * (currentIndex === 0 ? -1 : currentIndex + 1)), 0 ) % 11 === 0 ? true : 'Voer een valide BSN in.'"
+            },
+            "type": "textfield",
+            "input": true
+        },
+        {
+            "label": "Voornaam",
+            "applyMaskOn": "change",
+            "tableView": true,
+            "validate": {
+                "required": true
+            },
+            "key": "gegevensVanuitAanvraag.aanvraagOntologieData.persoonsgegevens.persoon.voornamen",
+            "type": "textfield",
+            "input": true
+        },
+        {
+            "label": "Tussenvoegsel(s)",
+            "applyMaskOn": "change",
+            "tableView": true,
+            "key": "gegevensVanuitAanvraag.aanvraagOntologieData.persoonsgegevens.persoon.voorvoegsel",
+            "type": "textfield",
+            "input": true
+        },
+        {
+            "label": "Achternaam",
+            "applyMaskOn": "change",
+            "tableView": true,
+            "validate": {
+                "required": true
+            },
+            "key": "gegevensVanuitAanvraag.aanvraagOntologieData.persoonsgegevens.persoon.geslachtsnaamstam",
+            "type": "textfield",
+            "input": true
+        },
+        {
+            "label": "volledigeNaam",
+            "calculateValue": "value = data.gegevensVanuitAanvraag.aanvraagOntologieData.persoonsgegevens.persoon.voornamen + ( data.gegevensVanuitAanvraag.aanvraagOntologieData.persoonsgegevens.persoon.voorvoegsel ? ' data.gegevensVanuitAanvraag.aanvraagOntologieData.persoonsgegevens.persoon.voorvoegsel ' : '' ) + data.gegevensVanuitAanvraag.aanvraagOntologieData.persoonsgegevens.persoon.geslachtsnaamstam",
+            "key": "gegevensVanuitAanvraag.additioneleAanvraagData.persoonsgegevens.persoon.volledigeNaam",
+            "type": "hidden",
+            "input": true,
+            "tableView": false
+        },
+        {
+            "label": "Contactgegevens",
+            "reorder": false,
+            "disableAddingRemovingRows": true,
+            "addAnotherPosition": "bottom",
+            "layoutFixed": false,
+            "enableRowGroups": false,
+            "initEmpty": false,
+            "tableView": false,
+            "defaultValue": [
+                {}
+            ],
+            "key": "gegevensVanuitAanvraag.aanvraagOntologieData.persoonsgegevens.persoon.contactgegevens",
+            "type": "datagrid",
+            "input": true,
+            "components": [
+                {
+                    "label": "Email",
+                    "reorder": false,
+                    "addAnotherPosition": "bottom",
+                    "layoutFixed": false,
+                    "enableRowGroups": false,
+                    "initEmpty": false,
+                    "tableView": false,
+                    "defaultValue": [
+                        {}
+                    ],
+                    "key": "email",
+                    "type": "datagrid",
+                    "input": true,
+                    "components": [
+                        {
+                            "label": "E-mail",
+                            "placeholder": "voorbeeld@example.com",
+                            "applyMaskOn": "change",
+                            "tableView": true,
+                            "validate": {
+                                "required": true
+                            },
+                            "key": "eMailadres",
+                            "type": "email",
+                            "input": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Communicatie voorkeur",
+            "optionsLabelPosition": "right",
+            "inline": false,
+            "tableView": false,
+            "values": [
+                {
+                    "label": "Post",
+                    "value": "post",
+                    "shortcut": ""
+                },
+                {
+                    "label": "Portaal",
+                    "value": "portaal",
+                    "shortcut": ""
+                }
+            ],
+            "validate": {
+                "required": true
+            },
+            "key": "gegevensVanuitAanvraag.additioneleAanvraagData.persoonsgegevens.persoon.communicatievoorkeur",
+            "type": "radio",
+            "input": true
+        },
+        {
+            "label": "Doorgaan",
+            "action": "custom",
+            "showValidations": false,
+            "disableOnInvalid": true,
+            "tableView": false,
+            "key": "submit",
+            "input": true,
+            "type": "button",
+            "custom": "form.submit(); component.disabled = true;"
+        }
+    ]
+}

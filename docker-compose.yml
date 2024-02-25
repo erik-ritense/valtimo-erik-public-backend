@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+    valtimo-core-db:
+        image: postgres
+        environment:
+            POSTGRES_DB: erik1
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+        ports:
+            - "5444:5432"
+
+    valtimo-core-keycloak-db:
+        image: mysql:8-oracle
+        ports:
+            - "3307:3306"
+        cap_add:
+            - SYS_NICE  # CAP_SYS_NICE
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: keycloak
+            MYSQL_USER: keycloak
+            MYSQL_PASSWORD: password
+
+    valtimo-core-keycloak:
+        image: quay.io/keycloak/keycloak:17.0.1-legacy
+        ports:
+            - "8082:8080"
+        depends_on:
+            - valtimo-core-keycloak-db
+        environment:
+            KEYCLOAK_USER: admin
+            KEYCLOAK_PASSWORD: admin
+            KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/core-realm-valtimo.json
+            DB_VENDOR: mysql
+            DB_ADDR: valtimo-core-keycloak-db
+            DB_USER: keycloak
+            DB_PASSWORD: password
+        volumes:
+            - ./docker/keycloak:/opt/jboss/keycloak/imports
+            - ./docker/keycloak/exports:/opt/jboss/keycloak/exports

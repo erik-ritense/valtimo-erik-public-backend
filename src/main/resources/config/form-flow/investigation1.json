@@ -1,0 +1,17 @@
+{
+    "startStep": "startStep",
+    "steps": [
+        {
+            "key": "singleStep",
+            "type": {
+                "name": "form",
+                "properties": {
+                    "definition": "investigation1-flow"
+                }
+            },
+            "onComplete": [
+                "${sampleService.logSomething()}"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+[
+    {
+        "processDefinitionKey": "flow-example",
+        "canInitializeDocument": true,
+        "startableByUser": true
+    }
+]

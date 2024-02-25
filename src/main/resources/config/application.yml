@@ -1,0 +1,179 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration will be overriden by the Spring profile you use,
+# for example application-dev.yml if you use the "dev" profile.
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+logging:
+    file:
+        name: /tmp/spring.log
+
+spring:
+    profiles:
+        active: ${SPRING_PROFILES_ACTIVE}
+    application:
+        name: gzac-backend
+    jackson:
+        date-format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+        time-zone: UTC
+    devtools:
+        restart:
+            enabled: false
+        livereload:
+            enabled: false
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://127.0.0.1:5444/erik1
+        name: erik1
+        username: postgres
+        password: postgres
+        hikari:
+            poolName: "valtimo-core-pool"
+            auto-commit: false
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 500
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
+                characterEncoding: utf8
+                useUnicode: true
+                useLegacyDatetimeCode: false
+                useSSL: false
+                useLocalSessionState: true
+                rewriteBatchedStatements: true
+                cacheResultSetMetadata: true
+                cacheServerConfiguration: true
+                elideSetAutoCommits: true
+                maintainTimeStats: false
+                serverTimezone: UTC
+                allowPublicKeyRetrieval: true
+    groovy:
+        template:
+            check-template-location: false
+    liquibase:
+        enabled: false
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        database: postgresql
+        show_sql: false
+        open-in-view: false
+        properties:
+            hibernate:
+                hbm2ddl.auto: none
+                generate_statistics: false
+                naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+                cache:
+                    use_second_level_cache: false
+                    use_query_cache: false
+                    region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+                format_sql: true
+                jdbc:
+                    time_zone: UTC
+                connection:
+                    provider_disables_autocommit: true
+        hibernate:
+            ddl-auto: none
+            naming:
+                physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+                implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+            use-new-id-generator-mappings: false
+    messages:
+        basename: i18n/messages
+    main.allow-bean-definition-overriding: true
+    jersey:
+        application-path: /api/camunda-rest
+    autoconfigure:
+        exclude:
+            - org.springframework.boot.actuate.autoconfigure.metrics.web.tomcat.TomcatMetricsAutoConfiguration
+            - org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
+
+server:
+    port: 8080
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+        min-response-size: 1024
+
+mailing:
+    onlyAllowWhitelistedRecipients: true
+    redirectAllMails: false
+    whitelistedEmailAddresses:
+    whitelistedDomains:
+    sendRedirectedMailsTo:
+
+valtimo:
+    app:
+        scheme: http
+        hostname: ${VALTIMO_APP_HOSTNAME}
+    jwt:
+        base64encoding: false #auth0 client is not base64 encoded
+        tokenValidityInSeconds: 3600 # Token is valid 1 hour
+        tokenValidityInSecondsForRememberMe: 2592000
+        secret: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAooyECQIi6v4TLKOYWwXClDhJcrGcGfKZj7LQIgY/Ajm2nAKv5kiZRoS8GzMzIGKkkilAJyWQCoKlP//azHqzIxO6WZWCqGFxd04vK5JYujsiMMTNvTggfFSM7VxbzU/wv+aAEvBaGUMYp2Oamn5szzYzkzsowujvDZp+CE8ryZWTVmA+8WZE4aoU6VzfXmMDmPxvRXvktPRsJkA7hkv65TTJwUZF38goRg62kRD0hOP1sIy6vwKDSkjafLV1bYNBRiWXNReJNBXauhy74GeiHODGrI62NwUJXSgZ62cViPt6cx/3A7VBPLpEPnpnlZcIDfsFpSUuNEXc7HoLRuldbQIDAQAB
+    hardening:
+        removeStacktracesFromReturnedExceptions: true
+        allowStacktraceOnIps:
+            - "*"
+    swagger:
+        enabled: true
+        title: Valtimo Implementation API
+        description: Valtimo Implementation API documentation
+        version: 1.0.0
+        termsOfServiceUrl:
+        contactName:
+        contactUrl:
+        contactEmail:
+        license:
+        licenseUrl:
+    connector-encryption:
+        secret: "0123456789101112"
+    plugin:
+        encryption-secret: "abcdefghijklmnop"
+    database: postgres
+
+spring-actuator:
+    username: admin
+    password: #env var
+
+audit:
+    record:
+        retention: 365 # days
+
+# ==================
+# CRON job settings
+# ==================
+scheduling:
+    enabled: true
+    job:
+        cron:
+            syncAuth0LogsEvents: 0 0 3 * * ? # Every day at 3:00
+            cleanupAuditEvents: 0 0 4 * * ? # Every day at 00:00
+            taskNotificationReminder: 0 0 10 * * ? # Every day at 10:00
+
+camunda:
+    bpm:
+        database:
+            type: postgres
+        history-level: AUDIT
+        history-level-default: AUDIT
+        admin-user:
+            id: Admin
+            password: Admin
+            first-name: Admin account
+
+# ==================
+# keycloak server to server config
+# ==================
+keycloak:
+    realm: Valtimo
+    auth-server-url: http://localhost:8082/auth
+    resource: valtimo-user-m2m-client
+    credentials:
+        secret: 6ef6ca16-6b86-482a-a3d9-0561704c1db9

@@ -1,0 +1,193 @@
+{
+    "$id": "investigation1.schema",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "investigation1",
+    "type": "object",
+    "properties": {
+        "gegevensVanuitAanvraag": {
+            "properties": {
+                "aanvraagOntologieData": {
+                    "anyOf": [
+                        {
+                            "$ref": "/document/definition/reference/ontologie/compliance-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/diensten-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/historie-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/inkomsten-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/instantiemodellen-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/koppelvlak-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/levenssituatie-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/locatie-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/normafwijking-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/ontologiebeschrijving-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/ontologieinkomen-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/organisatie-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/persoonsgegevens-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/proces-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/profiel-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/profieloverig-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/redenaanvraag-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/regels-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/relaties-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/terug-eninvordering-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/vermogen-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/zaak-v1.schema.json"
+                        }
+                    ]
+                },
+                "additioneleAanvraagData": {
+                    "properties": {
+                        "persoonsgegevens": {
+                            "type": "object",
+                            "properties": {
+                                "persoon": {
+                                    "properties": {
+                                        "volledigeNaam": {
+                                            "type": "string"
+                                        },
+                                        "communicatievoorkeur": {
+                                            "type": "string"
+                                        },
+                                        "contactgegevens": {
+                                            "type": "array",
+                                            "additionalProperties": false
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "gegevensVanuitBronnen": {
+            "properties": {
+                "bronnenOntologieData": {
+                    "anyOf": [
+                        {
+                            "$ref": "/document/definition/reference/ontologie/compliance-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/diensten-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/historie-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/inkomsten-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/instantiemodellen-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/koppelvlak-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/levenssituatie-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/locatie-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/normafwijking-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/ontologiebeschrijving-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/ontologieinkomen-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/organisatie-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/persoonsgegevens-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/proces-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/profiel-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/profieloverig-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/redenaanvraag-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/regels-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/relaties-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/terug-eninvordering-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/vermogen-v1.schema.json"
+                        },
+                        {
+                            "$ref": "/document/definition/reference/ontologie/zaak-v1.schema.json"
+                        }
+                    ],
+                    "additionalProperties": false
+                },
+                "bronnenAdditioneleData": {
+                    "properties": {},
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "openzaak": {
+            "$ref": "openzaak.schema.json#/definitions/openzaakgegevens"
+        }
+    },
+    "additionalProperties": false,
+    "definitions": {}
+}

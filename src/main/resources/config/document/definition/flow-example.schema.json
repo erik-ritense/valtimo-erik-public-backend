@@ -1,0 +1,19 @@
+{
+    "$id": "flow-example.schema",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Flow example",
+    "type": "object",
+    "properties": {
+        "voornaam": {
+            "type": "string",
+            "description": "Voornaam"
+        },
+        "hasBusiness": {
+            "type": "boolean"
+        }
+        ,
+        "likedSong": {
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,7 @@
+[
+    {
+        "processDefinitionKey": "investigation1",
+        "canInitializeDocument": true,
+        "startableByUser": true
+    }
+]
