@@ -66,6 +66,11 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-security")
 
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
 
     implementation("org.postgresql:postgresql:42.6.0")
 
